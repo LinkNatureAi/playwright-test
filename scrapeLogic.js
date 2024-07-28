@@ -137,6 +137,11 @@ async function main() {
 
     const outputFolder = 'mp3_files';
 
+    // Create the folder if it doesn't exist
+    if (!fs.existsSync(outputFolder)) {
+        fs.mkdirSync(outputFolder, { recursive: true });
+    }
+
     for (const [term, translation] of Object.entries(termMappings)) {
         try {
             await processTerm(term, translation, outputFolder);
